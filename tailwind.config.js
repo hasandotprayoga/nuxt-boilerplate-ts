@@ -10,6 +10,9 @@ export default {
       center: true,
     },
     extend: {
+      maxWidth: {
+        "8xl": "90rem",
+      },
       colors: {
         primary: {
           DEFAULT: "#D30000",
