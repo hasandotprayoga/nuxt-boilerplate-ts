@@ -1,0 +1,81 @@
+// pipeline {
+//     environment {
+//         // Environment Global
+//         registryUrl = 'https://registry.yukbisnis.dev'
+//         image = 'registry.yukbisnis.dev/landingpage'
+//         // Environment Development
+//         buildDev = 'development'
+//         tagDevelopment = 'staging'
+//         webhookDevelopment = 'https://portainer.yukbisnis.dev/api/stacks/webhooks/ec600d22-eab3-4b9f-a367-7aec24d80b10'
+//         devApiUrl='https://gateway.yukbisnis.dev/v1'
+//         devAssetUrl='https://lp.yukbisnis.dev'
+
+//         buildPro = 'production'
+//         tagProduction = 'latest'
+//         proApiUrl='https://gateway.yubiapi.net/v1'
+//         proAssetUrl='https://lp.yukbisnis.com'
+//         webhookProduction = 'https://portainer.yukbisnis.com/api/stacks/webhooks/f4b8e27d-7731-4441-b255-7f1d9333691f'
+//     }
+
+//     agent any
+//     stages{
+//         stage ('build image development'){
+//             when {
+//                 branch "development"
+//             }
+//             steps{
+//                     sh 'docker image build --build-arg BUILD_MODE=$buildDev --build-arg BUILD_API_URL=$devApiUrl --build-arg BUILD_ASSET_URL=$devAssetUrl -t $image:$tagDevelopment .'
+//             }
+//         }
+//         stage('Push Image development'){
+//             when {
+//                 branch "development"
+//             }
+//             steps{
+//                 script {
+//                     docker.withRegistry(registryUrl, ''){
+//                         sh 'docker push $image:$tagDevelopment'
+//                     }
+//                 }
+//             }
+//         }
+
+//         stage('deploy service to development'){
+//             when {
+//                 branch "development"
+//             }
+//             steps{
+//                     sh 'curl -X POST $webhookDevelopment'
+//             }
+//         }
+//         stage ('build image Production'){
+//             when {
+//                 branch "main"
+//             }
+//             steps{
+//                     sh 'docker image build --build-arg BUILD_MODE=$buildPro --build-arg BUILD_API_URL=$proApiUrl --build-arg BUILD_ASSET_URL=$proAssetUrl -t $image:$tagProduction .'
+//             }
+//         }
+//         stage('Push Image Production'){
+//             when {
+//                 branch "main"
+//             }
+//             steps{
+//                 script {
+//                     docker.withRegistry(registryUrl, ''){
+//                         sh 'docker push $image:$tagProduction'
+//                     }
+//                 }
+//             }
+//         }
+
+//         stage('deploy service to Production'){
+//             when {
+//                 branch "main"
+//             }
+//             steps{
+//                 sh 'curl -X POST $webhookProduction'
+//             }
+//         }
+//     }
+// }

@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "author": {
+    "name": "Hasan Prayoga",
+    "email": "hasandotprayoga@gmail.com",
+    "url": "https://github.com/hasandotprayoga"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxtjs/fontaine": "^0.2.4",
+    "@nuxtjs/tailwindcss": "^6.4.1",
+    "nuxt": "^3.2.3"
+  },
+  "dependencies": {
+    "@fontsource/lato": "^4.5.10",
+    "@fontsource/poppins": "^4.5.10",
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "nuxt-icons": "^3.1.0"
+  }
+}
